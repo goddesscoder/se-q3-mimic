@@ -55,17 +55,10 @@ def create_mimic_dict(filename):
                     word_dict[word] = [word_list[index + 1]]
                 else:
                     word_dict[word].append(word_list[index + 1])
-    print(word_dict)
     return word_dict
-    pass
 
 
 def print_mimic_random(mimic_dict, num_words):
-    start_word = ''
-    mimic_dict = word_dict
-    if start_word == mimic_dict:
-        return random.choice(start_word)
-        print(start_word)
     """Given a previously created mimic_dict and num_words,
     prints random words from mimic_dict as follows:
         - Use a start_word of '' (empty string)
@@ -74,8 +67,15 @@ def print_mimic_random(mimic_dict, num_words):
         - Randomly select a new word from the next-list
         - Repeat this process num_words times
     """
-    # +++your code here+++
-    pass
+    start_word = ''
+    results = []
+    for _ in range(num_words):
+        if start_word not in mimic_dict:
+            start_word = ''
+        next_word = random.choice(mimic_dict[start_word])
+        results.append(next_word)
+        start_word = next_word
+    print(' '.join(results), end="")
 
 
 def main(args):
